@@ -6,8 +6,10 @@ from email.mime.multipart import MIMEMultipart
 from email.utils import formatdate
 from . import Frame
 
+
 class MailSender:
     can_send = True
+
     def __init__(self, host: str, port: str, account: str, password: str) -> None:
         if host == "" or port == "" or account == "" or password == "":
             self.can_send = False
@@ -17,7 +19,7 @@ class MailSender:
         self.password = password
 
     def send(self, frame: Frame.Frame, subect: str = "subject", body: str = "body"):
-        if self.can_send == False:
+        if not self.can_send:
             return
 
         msg = MIMEMultipart()

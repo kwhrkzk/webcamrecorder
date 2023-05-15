@@ -1,14 +1,17 @@
-from . import IAnalyzeVideo 
+from . import IAnalyzeVideo
 from . import IDetectMotion
-from ..domain import VideoSource 
+from ..domain import VideoSource
 import os
 from dotenv import load_dotenv
 from injector import inject, noninjectable
 
+
 class AnalyzeVideo(IAnalyzeVideo.IAnalyzeVideo):
     @inject
     @noninjectable("path")
-    def __init__(self, detectmotion: IDetectMotion.IDetectMotion, path: str) -> None:
+    def __init__(self,
+                 detectmotion: IDetectMotion.IDetectMotion,
+                 path: str) -> None:
         load_dotenv()
 
         self.detectmotion = detectmotion

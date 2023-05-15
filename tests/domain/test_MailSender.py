@@ -1,7 +1,8 @@
 from webcamrecorder.domain import MailSender
-from webcamrecorder.domain import VideoSource 
+from webcamrecorder.domain import VideoSource
 import os
 from dotenv import load_dotenv
+
 
 def test_send():
     load_dotenv()
@@ -12,4 +13,3 @@ def test_send():
     frame = source.createFrame()
     sender = MailSender.MailSender(os.environ["SMTP_SERVER_ADDRESS"], os.environ["SMTP_PORT"], os.environ["SMTP_ACCOUNT"], os.environ["SMTP_PASSWORD"])
     # sender.send(frame)
-

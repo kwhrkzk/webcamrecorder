@@ -1,13 +1,15 @@
-from webcamrecorder.domain import VideoSource 
+from webcamrecorder.domain import VideoSource
 from injector import Injector
 import webcamrecorder.app
 import os
 from dotenv import load_dotenv
 
+
 def configure(b):
     b.bind(webcamrecorder.app.IDetectMotion.IDetectMotion, webcamrecorder.app.DetectMotion.DetectMotion)
     b.bind(webcamrecorder.app.IAnalyzeVideo.IAnalyzeVideo, webcamrecorder.app.AnalyzeVideo.AnalyzeVideo)
     b.bind(webcamrecorder.app.ISendMail.ISendMail, webcamrecorder.app.SendMail.SendMail)
+
 
 def test_send():
     load_dotenv()

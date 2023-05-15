@@ -1,8 +1,9 @@
 from . import IContinuousRecording
-from ..domain.WebcameraSource import WebcameraSource 
+from ..domain.WebcameraSource import WebcameraSource
 import os
 from dotenv import load_dotenv
 import datetime
+
 
 class ContinuousRecording(IContinuousRecording.IContinuousRecording):
     def __init__(self) -> None:
@@ -20,5 +21,5 @@ class ContinuousRecording(IContinuousRecording.IContinuousRecording):
             now = format(datetime.datetime.now(), "%Y%m%d%H%M%S")
             filepath = os.path.join("store", self.WEBCAMERA_OUTPUTFILENAME + "_" + now + ".mp4")
             ret = self.source.record(filepath, self.WEBCAMERA_RECORD_MINUTES)
-            if ret == False:
+            if not ret:
                 break

@@ -1,8 +1,9 @@
 from collections import deque
 from . import Frame
 
+
 class FrameQueue:
-    def __init__(self, maxlen = 1000) -> None:
+    def __init__(self, maxlen=1000) -> None:
         self.queue = deque(maxlen=maxlen)
 
     def enqueue(self, frame: Frame.Frame) -> None:

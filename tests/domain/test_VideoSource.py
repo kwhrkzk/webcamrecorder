@@ -1,6 +1,5 @@
 from webcamrecorder.domain import VideoSource
-import os
-from dotenv import load_dotenv
+
 
 def test_VideoSource():
     source = VideoSource.VideoSource("d:\\20230421_063552_43分ころゴミ捨てられる.mp4")

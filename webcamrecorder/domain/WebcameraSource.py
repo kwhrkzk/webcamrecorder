@@ -3,8 +3,9 @@ from . import FrameQueue
 import cv2
 from datetime import datetime, timedelta
 
+
 class WebcameraSource():
-    def __init__(self, url: str, N_FRAME_BEFORE_DETECTED = 500, WEBCAMERA_FPS = 24) -> None:
+    def __init__(self, url: str, N_FRAME_BEFORE_DETECTED=500, WEBCAMERA_FPS=24) -> None:
         self.url = url
         self.source = cv2.VideoCapture(url)
 
@@ -13,11 +14,11 @@ class WebcameraSource():
         h = int(self.source.get(cv2.CAP_PROP_FRAME_HEIGHT))
         self.size = (w, h)
         self.fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
-        self.queue = FrameQueue.FrameQueue(maxlen = N_FRAME_BEFORE_DETECTED)
+        self.queue = FrameQueue.FrameQueue(maxlen=N_FRAME_BEFORE_DETECTED)
 
     def createFrame(self) -> Frame.Frame | None:
         ret, frame = self.source.read()
-        if ret == False:
+        if not ret:
             return None
 
         x = Frame.Frame(frame, int(self.source.get(cv2.CAP_PROP_POS_FRAMES)))
@@ -61,4 +62,4 @@ class WebcameraSource():
 
         video.release()
 
-        return True if frame != None else False
+        return True if frame is not None else False

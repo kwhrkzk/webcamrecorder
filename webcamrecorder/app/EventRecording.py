@@ -1,11 +1,12 @@
-from . import IEventRecording 
+from . import IEventRecording
 from . import ISendMail
 from . import IDetectMotion
-from ..domain.WebcameraSource import WebcameraSource 
+from ..domain.WebcameraSource import WebcameraSource
 import os
 from dotenv import load_dotenv
 import datetime
 from injector import inject
+
 
 class EventRecording(IEventRecording.IEventRecording):
     @inject

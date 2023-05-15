@@ -1,5 +1,6 @@
 import cv2
 
+
 class Frame:
     def __init__(self, frame, frame_position) -> None:
         self.frame = frame

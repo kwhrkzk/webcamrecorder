@@ -1,8 +1,9 @@
 from . import ITimerRecording
-from ..domain.WebcameraSource import WebcameraSource 
+from ..domain.WebcameraSource import WebcameraSource
 import os
 from dotenv import load_dotenv
 import datetime
+
 
 class TimerRecording(ITimerRecording.ITimerRecording):
     def __init__(self) -> None:
@@ -17,5 +18,7 @@ class TimerRecording(ITimerRecording.ITimerRecording):
 
     def record(self):
         now = format(datetime.datetime.now(), "%Y%m%d%H%M%S")
-        filepath = os.path.join("store", self.output_file_name + "_" + now + ".mp4")
+        filepath = os.path.join(
+            "store",
+            self.output_file_name + "_" + now + ".mp4")
         self.source.record(filepath, self.record_minutes)

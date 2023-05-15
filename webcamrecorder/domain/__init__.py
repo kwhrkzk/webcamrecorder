@@ -1,5 +1,5 @@
-from . import MailSender
-from . import VideoSource
-from . import WebcameraSource
-from . import Frame
-from . import FrameQueue
+from . import MailSender # noqa
+from . import VideoSource # noqa
+from . import WebcameraSource # noqa
+from . import Frame # noqa
+from . import FrameQueue # noqa

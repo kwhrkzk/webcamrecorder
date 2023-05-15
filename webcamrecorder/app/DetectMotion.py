@@ -2,6 +2,7 @@ from . import IDetectMotion
 from ..domain.Frame import Frame
 import cv2
 
+
 class DetectMotion(IDetectMotion.IDetectMotion):
     def __init__(self) -> None:
         self.backgroundsubtractor = cv2.bgsegm.createBackgroundSubtractorMOG()

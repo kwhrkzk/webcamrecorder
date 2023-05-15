@@ -1,16 +1,18 @@
-from . import ITimerEventRecording 
+from . import ITimerEventRecording
 from . import ISendMail
 from . import IDetectMotion
-from ..domain.WebcameraSource import WebcameraSource 
+from ..domain.WebcameraSource import WebcameraSource
 import os
 from dotenv import load_dotenv
-import datetime
 from injector import inject
 from datetime import datetime, timedelta
 
+
 class TimerEventRecording(ITimerEventRecording.ITimerEventRecording):
     @inject
-    def __init__(self, sendmail: ISendMail.ISendMail, detectmotion: IDetectMotion.IDetectMotion) -> None:
+    def __init__(self,
+                 sendmail: ISendMail.ISendMail,
+                 detectmotion: IDetectMotion.IDetectMotion) -> None:
         load_dotenv()
 
         self.sendmail = sendmail
@@ -36,8 +38,10 @@ class TimerEventRecording(ITimerEventRecording.ITimerEventRecording):
             if ret:
                 self.sendmail.send(frame, self.MAIL_SUBJECT, self.MAIL_BODY)
 
-                now = format(datetime.datetime.now(), "%Y%m%d%H%M%S")
-                filepath = os.path.join("store", self.WEBCAMERA_OUTPUTFILENAME + "_" + now + ".mp4")
+                now = format(datetime.now(), "%Y%m%d%H%M%S")
+                filepath = os.path.join(
+                    "store",
+                    self.WEBCAMERA_OUTPUTFILENAME + "_" + now + ".mp4")
                 self.source.flash(filepath, self.N_FRAME_AFTER_DETECTED)
 
             if datetime.now() >= stop:

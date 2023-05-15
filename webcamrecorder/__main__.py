@@ -4,6 +4,7 @@ from injector import Injector
 import argparse
 import os
 
+
 def configure(b):
     b.bind(webcamrecorder.app.IDetectMotion.IDetectMotion, webcamrecorder.app.DetectMotion.DetectMotion)
     b.bind(webcamrecorder.app.ISendMail.ISendMail, webcamrecorder.app.SendMail.SendMail)
@@ -13,6 +14,7 @@ def configure(b):
     b.bind(webcamrecorder.app.ITimerRecording.ITimerRecording, webcamrecorder.app.TimerRecording.TimerRecording)
     b.bind(webcamrecorder.app.ITimerEventRecording.ITimerEventRecording, webcamrecorder.app.TimerEventRecording.TimerEventRecording)
 
+
 injector = Injector(configure)
 
 if not os.path.exists("store"):
@@ -20,31 +22,37 @@ if not os.path.exists("store"):
 
 parser = argparse.ArgumentParser()
 
+
 def timer(args):
     cr = injector.get(webcamrecorder.app.ITimerRecording.ITimerRecording)
     cr.record()
+
 
 def record(ars):
     cr = injector.get(webcamrecorder.app.IContinuousRecording.IContinuousRecording)
     cr.record()
 
+
 def event(args):
     er = injector.get(webcamrecorder.app.IEventRecording.IEventRecording)
     er.record()
+
 
 def timer_event(args):
     er = injector.get(webcamrecorder.app.ITimerEventRecording.ITimerEventRecording)
     er.record()
 
+
 def video(args):
     path = os.path.abspath(args.path)
 
-    if os.path.isfile(path) == False:
+    if not os.path.isfile(path):
         print("file is not exist.")
         return
 
     am = injector.call_with_injection(webcamrecorder.app.AnalyzeVideo.AnalyzeVideo, args=(injector.get(webcamrecorder.app.IDetectMotion.IDetectMotion), path))
     am.analyze()
+
 
 sp = parser.add_subparsers()
 

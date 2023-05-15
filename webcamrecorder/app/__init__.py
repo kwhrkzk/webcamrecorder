@@ -1,14 +1,14 @@
-from . import ISendMail
-from . import SendMail
-from . import IContinuousRecording
-from . import ContinuousRecording
-from . import IEventRecording
-from . import EventRecording
-from . import ITimerRecording
-from . import TimerRecording
-from . import ITimerEventRecording
-from . import TimerEventRecording
-from . import IDetectMotion
-from . import DetectMotion
-from . import IAnalyzeVideo
-from . import AnalyzeVideo
+from . import ISendMail # noqa
+from . import SendMail # noqa
+from . import IContinuousRecording # noqa
+from . import ContinuousRecording # noqa
+from . import IEventRecording # noqa
+from . import EventRecording # noqa
+from . import ITimerRecording # noqa
+from . import TimerRecording # noqa
+from . import ITimerEventRecording # noqa
+from . import TimerEventRecording # noqa
+from . import IDetectMotion # noqa
+from . import DetectMotion # noqa
+from . import IAnalyzeVideo # noqa
+from . import AnalyzeVideo # noqa
