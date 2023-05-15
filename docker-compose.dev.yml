@@ -1,5 +1,7 @@
 version: '3.7'
 services:
   webcamrecorder:
+    tty: true
+    stdin_open: true
     entrypoint: /bin/bash
     command: ""
