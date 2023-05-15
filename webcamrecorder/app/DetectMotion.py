@@ -25,4 +25,8 @@ class DetectMotion(IDetectMotion.IDetectMotion):
         for x, y, w, h in bboxes:
             cv2.rectangle(clone, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-        return (False, frame) if len(bboxes) == 0 else (True, Frame(clone, frame.frame_position))
+        return (
+            (False, frame)
+            if len(bboxes) == 0
+            else (True, Frame(clone, frame.frame_position))
+        )

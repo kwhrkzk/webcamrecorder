@@ -4,7 +4,7 @@ import cv2
 from datetime import datetime, timedelta
 
 
-class WebcameraSource():
+class WebcameraSource:
     def __init__(self, url: str, N_FRAME_BEFORE_DETECTED=500, WEBCAMERA_FPS=24) -> None:
         self.url = url
         self.source = cv2.VideoCapture(url)
@@ -13,7 +13,7 @@ class WebcameraSource():
         w = int(self.source.get(cv2.CAP_PROP_FRAME_WIDTH))
         h = int(self.source.get(cv2.CAP_PROP_FRAME_HEIGHT))
         self.size = (w, h)
-        self.fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+        self.fourcc = cv2.VideoWriter_fourcc("m", "p", "4", "v")
         self.queue = FrameQueue.FrameQueue(maxlen=N_FRAME_BEFORE_DETECTED)
 
     def createFrame(self) -> Frame.Frame | None:
@@ -35,7 +35,6 @@ class WebcameraSource():
 
         current = 0
         while frame := self.createFrame():
-
             frame = self.queue.dequeue()
             ret, frame = detectmotion.detect(frame)
             if ret:

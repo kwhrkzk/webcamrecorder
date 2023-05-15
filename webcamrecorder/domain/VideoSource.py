@@ -3,7 +3,7 @@ from . import FrameQueue
 import cv2
 
 
-class VideoSource():
+class VideoSource:
     def __init__(self, path: str, N_FRAME_BEFORE_DETECTED=500):
         self.path = path
         self.source = cv2.VideoCapture(path)
@@ -13,7 +13,7 @@ class VideoSource():
         w = int(self.source.get(cv2.CAP_PROP_FRAME_WIDTH))
         h = int(self.source.get(cv2.CAP_PROP_FRAME_HEIGHT))
         self.size = (w, h)
-        self.fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+        self.fourcc = cv2.VideoWriter_fourcc("m", "p", "4", "v")
         self.queue = FrameQueue.FrameQueue(maxlen=N_FRAME_BEFORE_DETECTED)
 
     def createFrame(self, frame_count=-1) -> Frame.Frame | None:
@@ -38,14 +38,21 @@ class VideoSource():
 
         current_frame_pos = int(self.source.get(cv2.CAP_PROP_POS_FRAMES))
 
-        max = self.frame_count if current_frame_pos + count >= self.frame_count else current_frame_pos + count
+        max = (
+            self.frame_count
+            if current_frame_pos + count >= self.frame_count
+            else current_frame_pos + count
+        )
 
         while frame := self.createFrame():
-
             frame = self.queue.dequeue()
             ret, frame = detectmotion.detect(frame)
             if ret:
-                max = self.frame_count if frame.frame_position + count >= self.frame_count else frame.frame_position + count
+                max = (
+                    self.frame_count
+                    if frame.frame_position + count >= self.frame_count
+                    else frame.frame_position + count
+                )
 
             if frame.frame_position >= max:
                 break

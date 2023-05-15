@@ -6,13 +6,31 @@ import os
 
 
 def configure(b):
-    b.bind(webcamrecorder.app.IDetectMotion.IDetectMotion, webcamrecorder.app.DetectMotion.DetectMotion)
+    b.bind(
+        webcamrecorder.app.IDetectMotion.IDetectMotion,
+        webcamrecorder.app.DetectMotion.DetectMotion,
+    )
     b.bind(webcamrecorder.app.ISendMail.ISendMail, webcamrecorder.app.SendMail.SendMail)
-    b.bind(webcamrecorder.app.IContinuousRecording.IContinuousRecording, webcamrecorder.app.ContinuousRecording.ContinuousRecording)
-    b.bind(webcamrecorder.app.IContinuousRecording.IContinuousRecording, webcamrecorder.app.ContinuousRecording.ContinuousRecording)
-    b.bind(webcamrecorder.app.IEventRecording.IEventRecording, webcamrecorder.app.EventRecording.EventRecording)
-    b.bind(webcamrecorder.app.ITimerRecording.ITimerRecording, webcamrecorder.app.TimerRecording.TimerRecording)
-    b.bind(webcamrecorder.app.ITimerEventRecording.ITimerEventRecording, webcamrecorder.app.TimerEventRecording.TimerEventRecording)
+    b.bind(
+        webcamrecorder.app.IContinuousRecording.IContinuousRecording,
+        webcamrecorder.app.ContinuousRecording.ContinuousRecording,
+    )
+    b.bind(
+        webcamrecorder.app.IContinuousRecording.IContinuousRecording,
+        webcamrecorder.app.ContinuousRecording.ContinuousRecording,
+    )
+    b.bind(
+        webcamrecorder.app.IEventRecording.IEventRecording,
+        webcamrecorder.app.EventRecording.EventRecording,
+    )
+    b.bind(
+        webcamrecorder.app.ITimerRecording.ITimerRecording,
+        webcamrecorder.app.TimerRecording.TimerRecording,
+    )
+    b.bind(
+        webcamrecorder.app.ITimerEventRecording.ITimerEventRecording,
+        webcamrecorder.app.TimerEventRecording.TimerEventRecording,
+    )
 
 
 injector = Injector(configure)
@@ -50,7 +68,10 @@ def video(args):
         print("file is not exist.")
         return
 
-    am = injector.call_with_injection(webcamrecorder.app.AnalyzeVideo.AnalyzeVideo, args=(injector.get(webcamrecorder.app.IDetectMotion.IDetectMotion), path))
+    am = injector.call_with_injection(
+        webcamrecorder.app.AnalyzeVideo.AnalyzeVideo,
+        args=(injector.get(webcamrecorder.app.IDetectMotion.IDetectMotion), path),
+    )
     am.analyze()
 
 
