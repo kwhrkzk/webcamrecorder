@@ -16,7 +16,7 @@ class AnalyzeVideo(IAnalyzeVideo.IAnalyzeVideo):
         self.N_FRAME_AFTER_DETECTED = int(os.getenv("N_FRAME_AFTER_DETECTED") or 500)
         self.output_file_name, _ = os.path.splitext(path)
         self.source = VideoSource.VideoSource(
-            path, int(os.getenv("N_FRAME_BEFORE_DETECTED")) or 0
+            path, int(os.getenv("N_FRAME_BEFORE_DETECTED") or 0)
         )
 
     def analyze(self):
