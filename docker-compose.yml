@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  webcamrecorder:
+    build: .
+    container_name: "webcamrecorder"
+    # tty: true
+    user: root
+    # restart: always
+    volumes:
+      - .:/webcamrecorder
+      - ${COMPOSE_SAVE_PATH}:/webcamrecorder/store
+    working_dir: /webcamrecorder
+    entrypoint: poetry run python3 -m webcamrecorder
+    command: help
