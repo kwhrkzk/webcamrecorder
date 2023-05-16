@@ -44,7 +44,7 @@ class TimerEventRecording(ITimerEventRecording.ITimerEventRecording):
                 filepath = os.path.join(
                     "store", self.WEBCAMERA_OUTPUTFILENAME + "_" + now + ".mp4"
                 )
-                self.source.flash(filepath, self.N_FRAME_AFTER_DETECTED)
+                self.source.flash(filepath, self.N_FRAME_AFTER_DETECTED, self.detectmotion)
 
             if datetime.now() >= stop:
                 break
