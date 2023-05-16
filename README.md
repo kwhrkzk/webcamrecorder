@@ -15,7 +15,7 @@ clone this git
 2. edit *WEBCAMERA_URL*
 3. execute the following command in this directory
 ```
-docker compose run webcamrecorder record
+docker compose run --rm webcamrecorder record
 ```
 
 # Detail
@@ -26,7 +26,7 @@ this app has several commands are:
 start recording.
 
 ```
-docker compose run webcamrecorder record
+docker compose run --rm webcamrecorder record
 ```
 
  Use the following environment variables.
@@ -44,7 +44,7 @@ Start recording when a difference is detected.
 The implmentation of motin detection is in *DetectMotion.py*.
 
 ```
-docker compose run webcamrecorder event
+docker compose run --rm webcamrecorder event
 ```
 
  Use the following environment variables.
@@ -76,7 +76,7 @@ docker compose run webcamrecorder event
 Record only during a specific time period.
 
 ```
-docker compose run webcamrecorder timer
+docker compose run --rm webcamrecorder timer
 ```
 
 The environment variables are the same as for ***record***, with the following additional environment variables added:
@@ -90,7 +90,7 @@ The environment variables are the same as for ***record***, with the following a
 start recording when a difference is detected. Stop recording after a specific amount of time has elapsed.
 
 ```
-docker compose run webcamrecorder timerevent
+docker compose run --rm webcamrecorder timerevent
 ```
 
 The environment variables are the same as for ***event***, with the following additional environment variables added:
@@ -105,7 +105,7 @@ The environment variables are the same as for ***event***, with the following ad
 Perform differential detection on a specified video file. Use *--path* option to specify the file. It's recommended to place the file in the *store* directory.
 
 ```
-docker compose run webcamrecorder video --path store/***.mp4
+docker compose run --rm webcamrecorder video --path store/***.mp4
 ```
 
  Use the following environment variables.
